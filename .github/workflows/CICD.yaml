@@ -1,3 +1,4 @@
+
 name: Lint Format Test Install
 on: [push]
 jobs:
@@ -11,14 +12,14 @@ jobs:
         python-version: 3.8
     - name: Install dependencies
       run: |
-        make install
+        make -C data_pipe install
     - name: Lint with Ruff
       run: |
-        make lint
+        make -C data_pipe lint
     - name: Test
       run: |
-        make test
+        make -C data_pipe test
     - name: Format code
       run: |
-        make format 
+        make -C data_pipe format 
         
