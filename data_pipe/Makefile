@@ -1,15 +1,23 @@
+
+#variables
+PYSRC := python
+
 install:
 	pip install --upgrade pip &&\
 		pip install -r requirements.txt
 
 test:
-	python -m pytest -vv --cov=main --cov=mylib test_*.py
+	python -m pytest -v python/tests
+	cargo test --quiet
 
 format:	
-	black *.py 
+	cargo fmt --quiet
+	black python 
+	
 
 lint:
-	pylint --disable=R,C --ignore-patterns=test_.*?py *.py mylib/*.py
+	cargo clippy --quiet
+	ruff check $(PYSRC)
 
 container-lint:
 	docker run --rm -i hadolint/hadolint < Dockerfile

@@ -1,6 +1,5 @@
-import pytest
-import data_pipe
+from data_pipe.main import hello_world
 
 
-def test_sum_as_string():
-    assert data_pipe.sum_as_string(1, 1) == "2"
+def test_hello_world():
+    assert hello_world() == "Hello, World!"
